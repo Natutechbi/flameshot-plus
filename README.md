@@ -5,9 +5,9 @@
         <img src="data/img/app/org.flameshot.Flameshot.svg" alt="Flameshot" />
       </a>
       <br />
-      Flameshot
+      Flameshot Plus
     </h1>
-    <h4>Powerful yet simple to use screenshot software.</h4>
+    <h4>Powerful yet simple to use screenshot software with plus: OCR included</h4>
   </p>
   <p>
     <a href="https://github.com/flameshot-org/flameshot/actions?query=workflow%3APackaging%28Linux%29">
@@ -51,7 +51,7 @@
 
 ## Preview
 
-![image](https://raw.githubusercontent.com/flameshot-org/flameshot/master/data/img/preview/animatedUsage.gif)
+![image](https://github.com/Natutechbi/flameshot-plus/blob/main/data/img/preview/animatedUsageOCR.gif)
 
 ## Index
 
@@ -216,6 +216,7 @@ These shortcuts are available in GUI mode:
 | <kbd>C</kbd>                                          | Set the Circle as paint tool |
 | <kbd>M</kbd>                                          | Set the Marker as paint tool |
 | <kbd>T</kbd>                                          | Add text to your capture |
+| <kbd>O</kbd>                                          | Set Selection as OCR extractor tool |
 | <kbd>B</kbd>                                          | Set Pixelate as the paint tool |
 | <kbd>←</kbd>, <kbd>↓</kbd>, <kbd>↑</kbd>, <kbd>→</kbd>                    | Move selection 1px                                             |
 | <kbd>Shift</kbd> + <kbd>←</kbd>, <kbd>↓</kbd>, <kbd>↑</kbd>, <kbd>→</kbd> | Resize selection 1px                                           |
