@@ -384,6 +384,10 @@ if (UNIX)
     # Install assets
     install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/share/ DESTINATION ${CMAKE_INSTALL_DATAROOTDIR})
 
+    # Install OCR extraction script
+    install(FILES ${CMAKE_SOURCE_DIR}/src/tools/ocr/ocr_extract.py
+            DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/flameshot/scripts)
+
     # Install Translations
     install(FILES ${QM_FILES} DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/flameshot/translations)
 endif ()

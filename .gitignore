@@ -42,7 +42,14 @@ Makefile*
 CMakeLists.txt.user
 
 # python
-venv/*
+venv/
+venv-ocr/
+.venv/
+PaddleOCR/
+__pycache__/
+*.pyc
+*.pyo
+.python-version
 
 # Created by https://www.gitignore.io/api/snapcraft
 

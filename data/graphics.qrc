@@ -23,6 +23,7 @@
         <file>img/material/black/delete.svg</file>
         <file>img/material/black/exit-to-app.svg</file>
         <file>img/material/black/format-text.svg</file>
+        <file>img/material/black/scanner.svg</file>
         <file>img/material/black/format_bold.svg</file>
         <file>img/material/black/format_italic.svg</file>
         <file>img/material/black/format_strikethrough.svg</file>
@@ -66,6 +67,7 @@
         <file>img/material/white/exit-to-app.svg</file>
         <file>img/material/white/filepath.svg</file>
         <file>img/material/white/format-text.svg</file>
+        <file>img/material/white/scanner.svg</file>
         <file>img/material/white/format_bold.svg</file>
         <file>img/material/white/format_italic.svg</file>
         <file>img/material/white/format_strikethrough.svg</file>

@@ -97,6 +97,7 @@
 - In-app screenshot editing.
 - DBus interface.
 - Upload to Imgur.
+- OCR text extraction powered by PaddleOCR.
 
 ## Usage
 
@@ -227,6 +228,7 @@ These shortcuts are available in GUI mode:
 | <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Z</kbd>                                            | Redo the next modification                    |
 | <kbd>Ctrl</kbd> + <kbd>Q</kbd>                                            | Leave the capture screen                                         |
 | <kbd>Ctrl</kbd> + <kbd>O</kbd>                                            | Choose an app to open the capture                                |
+| <kbd>O</kbd>                                                              | Extract text from selection using OCR                            |
 | <kbd>Ctrl</kbd> + <kbd>Return</kbd>                                            | Commit text in text area|
 | <kbd>Ctrl</kbd> + <kbd>Backspace</kbd>                                    | Cancel current selection                                       | 
 | <kbd>Return</kbd>                                             | Upload the selection to Imgur                                      |
@@ -562,6 +564,40 @@ cmake --install "$BUILD_DIR"
 ### FAQ
 
 <https://flameshot.org/docs/guide/faq/>
+
+## OCR
+
+Flameshot+ includes a built-in OCR (Optical Character Recognition) tool that uses [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR) to extract text from your screenshots.
+
+### Setup
+
+Before using OCR, you need to install the Python dependencies:
+
+```shell
+# From the repository root:
+./scripts/setup_ocr.sh
+```
+
+This creates a Python virtual environment at `venv-ocr/` and installs PaddleOCR and PaddlePaddle (CPU). The binary automatically searches for this venv at build-time and runtime locations.
+
+### Usage
+
+1. Take a screenshot with Flameshot (`flameshot gui`)
+2. Select the area containing text
+3. Press <kbd>O</kbd> to run OCR
+4. The extracted text appears in a popup — click the copy button to copy and exit
+
+### Environment variables
+
+- `FLAMESHOT_OCR_PYTHON` — path to a custom Python interpreter (overrides venv search)
+- `FLAMESHOT_OCR_SCRIPT` — path to `ocr_extract.py` (overrides script search)
+
+### Uninstall
+
+```shell
+rm -rf venv-ocr/
+rm -rf ~/.local/share/flameshot/venv-ocr/
+```
 
 ## License
 

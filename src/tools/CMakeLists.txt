@@ -34,6 +34,7 @@ target_sources(
 target_sources(flameshot PRIVATE line/linetool.h line/linetool.cpp)
 target_sources(flameshot PRIVATE marker/markertool.h marker/markertool.cpp)
 target_sources(flameshot PRIVATE move/movetool.h move/movetool.cpp)
+target_sources(flameshot PRIVATE ocr/ocrtool.h ocr/ocrtool.cpp ocr/textresultdialog.h ocr/textresultdialog.cpp ocr/loadingwidget.h ocr/loadingwidget.cpp)
 target_sources(flameshot PRIVATE pencil/penciltool.h pencil/penciltool.cpp)
 target_sources(
   flameshot

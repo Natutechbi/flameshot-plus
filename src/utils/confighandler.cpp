@@ -144,7 +144,7 @@ static QMap<class QString, QSharedPointer<ValueHandler>>
 #if !defined(Q_OS_MACOS)
     // Auto-select the monitor under the cursor instead of showing
     // the monitor selection UI. Not supported on Wayland.
-    OPTION("captureActiveMonitor"         ,Bool               ( false         )),
+    OPTION("captureActiveMonitor"         ,Bool               ( true          )),
 #endif
 #if defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)
     // Bypass freedesktop portal and use Qt's native X11
@@ -177,6 +177,7 @@ static QMap<QString, QSharedPointer<KeySequence>> recognizedShortcuts = {
 #endif
     SHORTCUT("TYPE_PIXELATE"            ,   "B"                     ),
     SHORTCUT("TYPE_INVERT"              ,   "I"                     ),
+    SHORTCUT("TYPE_OCR_EXTRACTOR"       ,   "O"                     ),
     SHORTCUT("TYPE_REDO"                ,   "Ctrl+Shift+Z"          ),
     SHORTCUT("TYPE_TEXT"                ,   "T"                     ),
     SHORTCUT("TYPE_TOGGLE_PANEL"        ,   "Space"                 ),
