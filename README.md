@@ -51,7 +51,7 @@
 
 ## Preview
 
-![image](https://raw.githubusercontent.com/flameshot-org/flameshot/master/data/img/preview/animatedUsage.gif)
+![image](https://github.com/Natutechbi/flameshot-plus/blob/main/data/img/preview/animatedUsage.gif)
 
 ## Index
 
