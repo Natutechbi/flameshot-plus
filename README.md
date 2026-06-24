@@ -5,9 +5,9 @@
         <img src="data/img/app/org.flameshot.Flameshot.svg" alt="Flameshot" />
       </a>
       <br />
-      Flameshot
+      Flameshot Plus
     </h1>
-    <h4>Powerful yet simple to use screenshot software.</h4>
+    <h4>Powerful yet simple to use screenshot software with plus: OCR included</h4>
   </p>
   <p>
     <a href="https://github.com/flameshot-org/flameshot/actions?query=workflow%3APackaging%28Linux%29">
