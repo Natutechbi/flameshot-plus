@@ -18,6 +18,12 @@ public:
                               QSize selectionSize,
                               QWidget* parent = nullptr);
 
+signals:
+    void copyRequested();
+
+protected:
+    void keyPressEvent(QKeyEvent* e) override;
+
 private:
     void copyToClipboard();
 

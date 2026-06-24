@@ -5,6 +5,7 @@
 #include "loadingwidget.h"
 #include "textresultdialog.h"
 
+#include "core/capturerequest.h"
 #include "core/qguiappcurrentscreen.h"
 #include "utils/pathinfo.h"
 #include "utils/confighandler.h"
@@ -19,6 +20,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QPainter>
+#include <QPointer>
 #include <QStandardPaths>
 #include <QTemporaryFile>
 #include <QTimer>
@@ -181,6 +183,8 @@ void OcrTool::cancelOcr()
 
 void OcrTool::pressed(CaptureContext& context)
 {
+    m_context = &context;
+
     // 1. Cancel any previous OCR run
     cancelOcr();
 
@@ -298,11 +302,32 @@ void OcrTool::onOcrFinished(int exitCode, QProcess::ExitStatus exitStatus)
         // Pre-copy to clipboard
         QApplication::clipboard()->setText(text);
 
-        // Show interactive dialog asynchronously, sized to the selection
+        // Show interactive dialog asynchronously, sized to the selection.
+        // Parent it to the capture window so focus returns correctly and
+        // Ctrl+C can be forwarded to the original screenshot copy action.
+        QWidget* parentWindow = qApp->activeWindow();
+        if (!parentWindow) {
+            if (auto* p = qobject_cast<QWidget*>(parent())) {
+                parentWindow = p->window();
+            }
+        }
         QSize selSize = m_selectionSize;
-        QTimer::singleShot(0, [text, selSize]() {
-            auto* dialog = new TextResultDialog(text, selSize);
+        CaptureContext* ctx = m_context;
+        QPointer<OcrTool> toolGuard(this);
+        QTimer::singleShot(0, [toolGuard, ctx, text, selSize, parentWindow]() {
+            if (!toolGuard)
+                return;
+            auto* dialog = new TextResultDialog(text, selSize, parentWindow);
             dialog->setAttribute(Qt::WA_DeleteOnClose);
+            connect(dialog,
+                    &TextResultDialog::copyRequested,
+                    toolGuard.data(),
+                    [toolGuard, ctx]() {
+                        if (!toolGuard || !ctx)
+                            return;
+                        ctx->request.addTask(CaptureRequest::COPY);
+                        emit toolGuard->requestAction(REQ_CLOSE_GUI);
+                    });
             dialog->show();
         });
     } else if (success && text.isEmpty()) {
@@ -314,13 +339,6 @@ void OcrTool::onOcrFinished(int exitCode, QProcess::ExitStatus exitStatus)
     // Clean up process
     m_process->deleteLater();
     m_process = nullptr;
-}
-
-void OcrTool::showResultDialog(const QString& text)
-{
-    auto* dialog = new TextResultDialog(text, m_selectionSize);
-    dialog->setAttribute(Qt::WA_DeleteOnClose);
-    dialog->show();
 }
 
 void OcrTool::showError(const QString& message)

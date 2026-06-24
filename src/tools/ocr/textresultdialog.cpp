@@ -11,7 +11,9 @@
 #include <QClipboard>
 #include <QHBoxLayout>
 #include <QIcon>
+#include <QKeyEvent>
 #include <QPushButton>
+#include <QShortcut>
 #include <QTextEdit>
 #include <QScreen>
 #include <QTimer>
@@ -65,6 +67,15 @@ TextResultDialog::TextResultDialog(const QString& text,
     connect(
       m_copyButton, &QPushButton::clicked, this, &TextResultDialog::copyToClipboard);
 
+    // Intercept Ctrl+C even when the QTextEdit has focus so it triggers the
+    // screenshot copy action instead of the widget's internal text copy.
+    auto* copyShortcut = new QShortcut(QKeySequence::Copy, this);
+    copyShortcut->setContext(Qt::ApplicationShortcut);
+    connect(copyShortcut,
+            &QShortcut::activated,
+            this,
+            &TextResultDialog::copyRequested);
+
     buttonRow->addStretch();
     buttonRow->addWidget(m_copyButton);
     mainLayout->addLayout(buttonRow);
@@ -115,6 +126,15 @@ TextResultDialog::TextResultDialog(const QString& text,
 
     m_textDisplay->setMinimumWidth(w - marginW);
     resize(w, h);
+}
+
+void TextResultDialog::keyPressEvent(QKeyEvent* e)
+{
+    if (e->matches(QKeySequence::Copy)) {
+        emit copyRequested();
+        return;
+    }
+    QDialog::keyPressEvent(e);
 }
 
 void TextResultDialog::copyToClipboard()

@@ -8,6 +8,8 @@
 #include <QProcess>
 #include <QTemporaryFile>
 
+struct CaptureContext;
+
 class LoadingWidget;
 
 class OcrTool : public AbstractActionTool
@@ -40,11 +42,11 @@ private slots:
 
 private:
     void cancelOcr();
-    void showResultDialog(const QString& text);
     void showError(const QString& message);
 
     QProcess* m_process = nullptr;
     LoadingWidget* m_loadingWidget = nullptr;
     QString m_tempImagePath;
     QSize m_selectionSize;
+    CaptureContext* m_context = nullptr;
 };
