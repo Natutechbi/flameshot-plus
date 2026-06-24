@@ -216,6 +216,7 @@ These shortcuts are available in GUI mode:
 | <kbd>C</kbd>                                          | Set the Circle as paint tool |
 | <kbd>M</kbd>                                          | Set the Marker as paint tool |
 | <kbd>T</kbd>                                          | Add text to your capture |
+| <kbd>O</kbd>                                          | Set Selection as OCR extractor tool |
 | <kbd>B</kbd>                                          | Set Pixelate as the paint tool |
 | <kbd>←</kbd>, <kbd>↓</kbd>, <kbd>↑</kbd>, <kbd>→</kbd>                    | Move selection 1px                                             |
 | <kbd>Shift</kbd> + <kbd>←</kbd>, <kbd>↓</kbd>, <kbd>↑</kbd>, <kbd>→</kbd> | Resize selection 1px                                           |
